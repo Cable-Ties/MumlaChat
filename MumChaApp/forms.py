@@ -6,6 +6,7 @@ class login_form(forms.Form):
   password = forms.CharField(label='', widget= forms.PasswordInput(attrs={'placeholder':'Password'}), required=True)
 
 class register_form(forms.Form):
+  user_id = forms.CharField(label='', widget= forms.TextInput(attrs={'placeholder':'MumlaID'}), required=True)
   email = forms.CharField(label = '', widget = forms.EmailInput(attrs={'placeholder':'メールアドレス'}), required = True)
   password = forms.CharField(label = '', widget = forms.PasswordInput(attrs={'placeholder':'パスワード'}), required = True)
   name = forms.CharField(label = '', widget = forms.TextInput(attrs={'placeholder':'ユーザーネーム'}), required = True)

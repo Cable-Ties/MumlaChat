@@ -24,3 +24,22 @@ def login(request):
     except(models.User.DoesNotExist):
       print("特定の値がないらしい")
       return firstlogin(request)
+
+#会員登録フォーム
+def register(request):
+  register_form = forms.register_form()
+  context_data = {'register_form': register_form}
+  return render(request, 'register.html', context = context_data)
+
+#会員登録完了
+def registration(request):
+  register_form = forms.register_form(request.POST)
+  models.MumChaApp_user.objects.create(
+    email = register_form.cleaned_data['email'],
+    password = register_form.cleaned_data['password'],
+    name = register_form.cleaned_data['name'],
+    img = register_form.cleaned_data['img'],
+    birth = register_form.cleaned_data['birth'],
+    comment = register_form.cleaned_data['comment'],
+  )
+  return firstlogin(request)

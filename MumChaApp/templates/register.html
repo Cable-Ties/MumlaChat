@@ -9,15 +9,16 @@
 
   <body>
     <h2>Member Registration</h2>
-    <form action="/registration/" method="POST">
+    <form action="/registration/" method="post">
         {% csrf_token %}
         <ul>
-            <li>メールアドレス{{register_form.email}}</li>
-            <li>パスワード{{register_form.password}}</li>
-            <li>ユーザネーム{{register_form.name}}</li>
-            <li>アイコン{{register_form.img}}</li>
-            <li>生年月日{{register_form.birth}}</li>
-            <li>コメント{{register_form.comment}}</li>
+          <li>ユーザID{{register_form.user_id}}</li>
+          <li>メールアドレス{{register_form.email}}</li>
+          <li>パスワード{{register_form.password}}</li>
+          <li>ユーザネーム{{register_form.name}}</li>
+          <li>アイコン{{register_form.img}}</li>
+          <li>生年月日{{register_form.birth}}</li>
+          <li>コメント{{register_form.comment}}</li>
         </ul>
         <input type="submit" value="登録">
     </form>

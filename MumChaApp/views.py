@@ -25,6 +25,11 @@ def login(request):
       print("特定の値がないらしい")
       return firstlogin(request)
 
+#ログアウト
+def logout(request):
+  request.session.flush()
+  return firstlogin(request)
+
 #会員登録フォーム
 def register(request):
   register_form = forms.register_form()
@@ -34,12 +39,14 @@ def register(request):
 #会員登録完了
 def registration(request):
   register_form = forms.register_form(request.POST)
-  models.MumChaApp_user.objects.create(
-    email = register_form.cleaned_data['email'],
-    password = register_form.cleaned_data['password'],
-    name = register_form.cleaned_data['name'],
-    img = register_form.cleaned_data['img'],
-    birth = register_form.cleaned_data['birth'],
-    comment = register_form.cleaned_data['comment'],
-  )
+  if register_form.is_valid():
+    models.User.objects.create(
+      user_id = register_form.cleaned_data['user_id'],
+      email = register_form.cleaned_data['email'],
+      password = register_form.cleaned_data['password'],
+      name = register_form.cleaned_data['name'],
+      img = register_form.cleaned_data['img'],
+      birth = register_form.cleaned_data['birth'],
+      comment = register_form.cleaned_data['comment'],
+    )
   return firstlogin(request)

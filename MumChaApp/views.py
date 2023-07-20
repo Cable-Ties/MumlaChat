@@ -53,6 +53,13 @@ def registration(request):
     )
   return firstlogin(request)
 
+#投稿ホーム
+def home(request):
+  tweet_list = models.Post.objects.all()
+  context_data = {'tweet_list':tweet_list}
+  return render(request, 'home.html', context = context_data)
+
+
 def tweet(request):
   post_form = forms.post_form()
   context_data = {'post_form': post_form}

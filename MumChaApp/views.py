@@ -50,3 +50,6 @@ def registration(request):
       comment = register_form.cleaned_data['comment'],
     )
   return firstlogin(request)
+
+#投稿ホーム
+

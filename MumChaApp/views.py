@@ -67,4 +67,5 @@ def tweeting(request):
       img = post_form.cleaned_data['img'],
       owner = models.User.objects.get(user_id=request.session['user_id'])
     )
-    return home(request)
+    #return home(request)
+    return tweet(request)

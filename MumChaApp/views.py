@@ -25,6 +25,11 @@ def login(request):
       print("特定の値がないらしい")
       return firstlogin(request)
 
+#ログアウト
+def logout(request):
+  request.session.flush()
+  return firstlogin(request)
+
 #会員登録フォーム
 def register(request):
   register_form = forms.register_form()
@@ -35,21 +40,13 @@ def register(request):
 def registration(request):
   register_form = forms.register_form(request.POST)
   if register_form.is_valid():
-    request.session['user_id'] = register_form.cleaned_data['user_id']
-    request.session['email'] = register_form.cleaned_data['email']
-    request.session['password'] = register_form.cleaned_data['password']
-    request.session['name'] = register_form.cleaned_data['name']
-    request.session['img'] = register_form.cleaned_data['img']
-    request.session['birth'] = register_form.cleaned_data['birth']
-    request.session['comment'] = register_form.cleaned_data['comment']
-    print(request.session['email'])
     models.User.objects.create(
-      user_id = request.session['user_id'],
-      email = request.session['email'],
-      password = request.session['password'],
-      name = request.session['name'],
-      img = request.session['img'],
-      birth = request.session['birth'],
-      comment = request.session['comment'],
+      user_id = register_form.cleaned_data['user_id'],
+      email = register_form.cleaned_data['email'],
+      password = register_form.cleaned_data['password'],
+      name = register_form.cleaned_data['name'],
+      img = register_form.cleaned_data['img'],
+      birth = register_form.cleaned_data['birth'],
+      comment = register_form.cleaned_data['comment'],
     )
   return firstlogin(request)

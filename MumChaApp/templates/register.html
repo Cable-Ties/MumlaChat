@@ -9,7 +9,7 @@
 
   <body>
     <h2>Member Registration</h2>
-    <form action="/registration/" method="POST">
+    <form action="/registration/" method="post">
         {% csrf_token %}
         <ul>
           <li>ユーザID{{register_form.user_id}}</li>

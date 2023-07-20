@@ -27,6 +27,7 @@ class Post(models.Model):
     contents_id = models.IntegerField(primary_key=True)
     content = models.TextField(max_length=200)
     post_date = models.DateTimeField()
+    img = models.ImageField(upload_to="images", null=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
 #フォローテーブル

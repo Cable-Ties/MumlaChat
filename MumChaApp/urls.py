@@ -10,4 +10,7 @@ urlpatterns = [
     path('logout/', views.logout), #ログアウト
     path('home/', views.home), #ホーム表示
     path('tweet/', views.tweet), #投稿
+    # path('logout/', views.logout), #ログアウト
+    path('tweet/', views.tweet), #投稿フォーム
+    path('tweeting/', views.tweeting), #投稿処理
 ]

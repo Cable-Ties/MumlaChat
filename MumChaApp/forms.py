@@ -13,3 +13,7 @@ class register_form(forms.Form):
   img = forms.ImageField(label = '', widget = forms.FileInput(attrs={'placeholder':'画像を選択'}), required = False)
   birth = forms.DateField(label = '', widget = forms.NumberInput(attrs={'type':'date'}), required = False)
   comment = forms.CharField(label = '', widget = forms.TextInput(attrs={'placeholder':'コメント'}), required = False)
+
+class post_form(forms.Form):
+  content = forms.CharField(label='', widget=forms.Textarea(attrs={'cols': '80', 'rows': '10'}), required=True)
+  img = forms.ImageField(label = '', widget = forms.FileInput(attrs={'placeholder':'画像を選択'}), required = False)

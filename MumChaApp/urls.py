@@ -8,4 +8,5 @@ urlpatterns = [
     path('register/', views.register), #会員登録フォーム
     path('registration/', views.registration), #会員登録
     # path('logout/', views.logout), #ログアウト
+    # path('tweet/', views.tweet), #投稿
 ]

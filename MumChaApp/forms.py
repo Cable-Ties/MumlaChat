@@ -1,5 +1,5 @@
 from django import forms
-from .models import User
+from .models import User, Post
 import datetime
 
 class login_form(forms.Form):
@@ -20,6 +20,11 @@ class register_form(forms.ModelForm):
     model = User
     fields = ['user_id', 'email', 'password', 'name', 'image', 'comment']
 
-class post_form(forms.Form):
-  content = forms.CharField(label='', widget=forms.Textarea(attrs={'cols': '80', 'rows': '10'}), required=True)
-  img = forms.ImageField(label = '', widget = forms.FileInput(attrs={'placeholder':'画像を選択'}), required = False)
+# class post_form(forms.Form):
+#   content = forms.CharField(label='', widget=forms.Textarea(attrs={'cols': '80', 'rows': '10'}), required=True)
+#   img = forms.ImageField(label = '', widget = forms.FileInput(attrs={'placeholder':'画像を選択'}), required = False)
+
+class post_form(forms.ModelForm):
+  class Meta:
+    model = Post
+    fields = ['content', 'img']

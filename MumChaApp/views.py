@@ -45,8 +45,7 @@ def registration(request):
     form = forms.register_form(request.POST, request.FILES)
     if form.is_valid():
       form.save()
-
-  return render(firstlogin)
+  return firstlogin(request)
 
 #投稿ホーム
 def home(request):
@@ -54,19 +53,21 @@ def home(request):
   context_data = {'tweet_list':tweet_list}
   return render(request, 'home.html', context = context_data)
 
-
+#投稿入力
 def tweet(request):
-  post_form = forms.post_form()
-  context_data = {'post_form': post_form}
-  return render(request, 'tweet.html', context = context_data)
+  params = {
+    'post_form': forms.post_form(),
+    }
+  return render(request, 'tweet.html', params)
 
+#投稿完了
 def tweeting(request):
-  post_form = forms.post_form(request.POST)
-  if post_form.is_valid():
-    models.Post.objects.create(
-      content = post_form.cleaned_data['content'],
+  if (request.method == 'POST'):
+    form = forms.post_form(request.POST, request.FILES)
+    form = form(
       post_date = datetime.datetime.now(),
-      img = post_form.cleaned_data['images'],
-      owner = models.User.objects.get(user_id=request.session['user_id'])
-    )
-    return home(request)
+      owner = models.User.objects.get(user_id=request.session['user_id']),
+      )
+    if form.is_valid():
+      form.save()
+  return home(request)

@@ -22,12 +22,9 @@
     <section class="page-section post">
       <div class="container">
           <!-- <img src="/static/img/.png" alt=""> -->
-          <form action="/MumlaChat/tweeting/" id="post_form" method="post">
+          <form action="/MumlaChat/tweeting/" id="post_form" method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            <ul>
-              <li>投稿{{post_form.content}}</li>
-              <li>写真{{post_form.img}}</li>
-            </ul>
+            <p>{{ post_form.as_p }}</p>
               <input type="submit" value="tweet">
           </form>
       </div>

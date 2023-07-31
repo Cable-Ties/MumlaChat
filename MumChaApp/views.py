@@ -65,11 +65,13 @@ def tweet(request):
 #投稿完了
 def tweeting(request):
   if (request.method == 'POST'):
-    form = forms.post_form(request.POST, request.FILES)
-    form = form(
-      post_date = datetime.datetime.now(),
-      owner = models.User.objects.get(user_id=request.session['user_id']),
+    nowtime = datetime.datetime.now()
+    request.FILES["img"].name = str(nowtime) + '.png'
+    post_data = forms.post_form(request.POST, request.FILES)
+    if post_data.is_valid():
+      post_data.save()
+      models.Post.objects.filter(post_date = nowtime).update(
+        post_date = datetime.datetime.now(),
+        owner = models.User.objects.get(user_id=request.session['user_id']),
       )
-    if form.is_valid():
-      form.save()
   return home(request)

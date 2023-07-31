@@ -22,13 +22,13 @@
     <section class="page-section login">
       <div class="container">
           <!-- <img src="/static/img/.png" alt=""> -->
-          <form action="/MumlaChat/login/" id="login_form" method = 'post'>
+          <form action="/login/" id="login_form" method = 'post'>
               {% csrf_token %}
               {{login_form}}
               <input type="submit" value="login">
           </form>
       </div>
-      <a href="register/">新規登録</a>
+      <a href="/register/">新規登録</a>
     </section>
   </body>
 

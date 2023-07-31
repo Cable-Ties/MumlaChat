@@ -12,7 +12,6 @@ class register_form(forms.ModelForm):
   password = forms.CharField(label = '', widget = forms.PasswordInput(attrs={'placeholder':'パスワード'}), required = True)
   name = forms.CharField(label = '', widget = forms.TextInput(attrs={'placeholder':'ユーザーネーム'}), required = True)
   image = forms.ImageField(label = '', widget = forms.FileInput(attrs={'placeholder':'画像を選択'}), required = False)
-  birth = forms.DateField(label = '', widget = forms.NumberInput(attrs={'type':'date'}), required = False)
   comment = forms.CharField(label = '', widget = forms.TextInput(attrs={'placeholder':'コメント'}), required = False)
   class Meta:
     model = User
@@ -23,6 +22,7 @@ class register_form(forms.ModelForm):
 #   img = forms.ImageField(label = '', widget = forms.FileInput(attrs={'placeholder':'画像を選択'}), required = False)
 
 class post_form(forms.ModelForm):
+  img = forms.ImageField(label='', widget=forms.ClearableFileInput(), required=False)
   class Meta:
     model = Post
     fields = ['content', 'img']

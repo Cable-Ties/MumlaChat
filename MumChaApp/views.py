@@ -42,6 +42,8 @@ def register(request):
 #会員登録完了
 def registration(request):
   if (request.method == 'POST'):
+    nowtime = datetime.datetime.now()
+    request.FILES["image"].name = str(nowtime) + '.png'
     form = forms.register_form(request.POST, request.FILES)
     if form.is_valid():
       form.save()

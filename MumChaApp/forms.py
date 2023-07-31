@@ -25,7 +25,7 @@ class register_form(forms.ModelForm):
 #   img = forms.ImageField(label = '', widget = forms.FileInput(attrs={'placeholder':'画像を選択'}), required = False)
 
 class post_form(forms.ModelForm):
-  img = forms.ImageField(label='', widget=forms.ClearableFileInput(), required=False)
+  image = forms.ImageField(label='', widget=forms.ClearableFileInput(), required=False)
   class Meta:
     model = Post
-    fields = ['content', 'img']
+    fields = ['content', 'image']

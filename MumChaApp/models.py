@@ -7,7 +7,7 @@ class User(models.Model):
     email = models.EmailField()
     password = models.CharField(max_length=100)
     name = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='images/user/', null=True)
+    image = models.ImageField(upload_to='images/user/', null=True, blank=True)
     comment = models.TextField(max_length=200, null=True)
 
     #ユーザー名を表示する
@@ -25,9 +25,9 @@ class User(models.Model):
 #投稿テーブル
 class Post(models.Model):
     content = models.TextField(max_length=200, null=True)
-    post_date = models.DateTimeField()
-    img = models.ImageField(upload_to="images/post/", null=True)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    post_date = models.DateTimeField(null=True)
+    image = models.ImageField(upload_to="images/post/", null=True, blank=True)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
 #フォローテーブル
 class Follow(models.Model):

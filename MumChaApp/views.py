@@ -52,6 +52,8 @@ def registration(request):
 #投稿ホーム
 def home(request):
   tweet_list = models.Post.objects.all()
+  tweet_list = list(tweet_list)
+  tweet_list.reverse()
   params = {
     'tweet_list':tweet_list
     }

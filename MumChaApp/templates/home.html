@@ -26,6 +26,7 @@
       {% for tweet in tweet_list %}
       <div class="container">
         <ul class="">
+          <li>{{tweet.owner}}</li>
           <li>{{tweet.post_date}}</li>
           <li><img src = '../../media/{{tweet.image}}'></li>
           <li>{{tweet.content}}</li>   

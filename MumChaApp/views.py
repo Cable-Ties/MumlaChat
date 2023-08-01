@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
 from . import forms
 from . import models
@@ -52,19 +52,23 @@ def registration(request):
 #投稿ホーム
 def home(request):
   tweet_list = models.Post.objects.all()
-  context_data = {'tweet_list':tweet_list}
-  return render(request, 'home.html', context = context_data)
+  params = {
+    'tweet_list':tweet_list
+    }
+  return render(request, 'home.html', params)
 
 #投稿入力
 def tweet(request):
   params = {
-    'post_form': forms.post_form(),
+    'post_form': forms.post_form()
     }
   return render(request, 'tweet.html', params)
 
 #投稿完了
 def tweeting(request):
   if (request.method == 'POST'):
+    nowtime = datetime.datetime.now()
+    request.FILES["image"].name = str(nowtime) + '.png'
     post_form = forms.post_form(request.POST, request.FILES)
     if post_form.is_valid():
       models.Post.objects.create(

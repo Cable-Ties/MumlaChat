@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
 from . import forms
 from . import models
@@ -52,13 +52,17 @@ def registration(request):
 #投稿ホーム
 def home(request):
   tweet_list = models.Post.objects.all()
-  context_data = {'tweet_list':tweet_list}
-  return render(request, 'home.html', context = context_data)
+  tweet_list = list(tweet_list)
+  tweet_list.reverse()
+  params = {
+    'tweet_list':tweet_list
+    }
+  return render(request, 'home.html', params)
 
 #投稿入力
 def tweet(request):
   params = {
-    'post_form': forms.post_form(),
+    'post_form': forms.post_form()
     }
   return render(request, 'tweet.html', params)
 

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Home｜MumlaChat</title>
+    <title>ホーム｜MumlaChat</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="/static/favicon.ico" />
     <!-- Font Awesome icons (free version)-->
@@ -19,19 +19,31 @@
   </head>
 
   <body>
-    <section>
+    <header>
+      <div class="head-wrapper">
+        <div class="mumlalogo"><img src="" alt=""></div>
+        <nav class="head-container">
+          <a href="/home/"><span>ホーム</span></a>
+          <a href="/tweet/"><span>つぶやく</span></a>
+          <a href="/account/"><span>アカウント</span></a>
+          <a href="/logout/"><span>ログアウト</span></a>
+        </nav>
+      </div>
+    </header>
+    <main>
       <div class="container">
-        <h2>Home</h2>
+        <h2>ホーム</h2>
       </div>
       {% for tweet in tweet_list %}
       <div class="container">
         <ul class="">
+          <li>{{tweet.owner}}</li>
           <li>{{tweet.post_date}}</li>
-          <li>{{tweet.img}}</li>
+          <li><img src = '../../media/{{tweet.image}}'></li>
           <li>{{tweet.content}}</li>   
         </ul>
       </div>
       {% endfor %}
-    </section>
+    </main>
   </body>
 </html>

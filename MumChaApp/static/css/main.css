@@ -4,12 +4,12 @@ body {
   justify-content: center;
 }
 
-header {
+header, footer {
   -webkit-box-align: end;
   align-items: flex-end;
 }
 
-.head-wrapper {
+.head-wrapper, .foot-wrapper {
   width: 275px;
   display:flex;
   flex-flow: column;

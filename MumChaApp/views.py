@@ -69,14 +69,23 @@ def tweet(request):
 #投稿完了
 def tweeting(request):
   if (request.method == 'POST'):
-    nowtime = datetime.datetime.now()
-    request.FILES["image"].name = str(nowtime) + '.png'
     post_form = forms.post_form(request.POST, request.FILES)
     if post_form.is_valid():
-      models.Post.objects.create(
-        content = post_form.cleaned_data['content'],
-        owner = models.User.objects.get(user_id=request.session['user_id']),
-        image = post_form.cleaned_data['image'],
-        post_date = datetime.datetime.now(),
-      )
+      if post_form.cleaned_data['image'] is not None:
+        nowtime = datetime.datetime.now()
+        request.FILES["image"].name = str(nowtime) + '.png'
+        post_form = forms.post_form(request.POST, request.FILES)
+        if post_form.is_valid():
+          models.Post.objects.create(
+            content = post_form.cleaned_data['content'],
+            owner = models.User.objects.get(user_id=request.session['user_id']),
+            image = post_form.cleaned_data['image'],
+            post_date = datetime.datetime.now(),
+          )
+      else:
+        models.Post.objects.create(
+          content = post_form.cleaned_data['content'],
+          owner = models.User.objects.get(user_id=request.session['user_id']),
+          post_date = datetime.datetime.now(),
+        )
   return home(request)

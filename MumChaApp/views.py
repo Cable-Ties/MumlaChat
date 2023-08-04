@@ -54,8 +54,18 @@ def home(request):
   tweet_list = models.Post.objects.all()
   tweet_list = list(tweet_list)
   tweet_list.reverse()
+  # ownerのアイコンを表示したい
+  post_list = [] # icon and post
+  for i in range(len(tweet_list)):
+    owner = models.User.objects.get(user_id = tweet_list[i].owner.user_id)
+    owner_img = owner.image
+    print(owner_img)
+    #owner_img_list.append(owner_img)
+    post_list.append([owner_img, tweet_list[i]])
+
   params = {
-    'tweet_list':tweet_list
+    'tweet_list':tweet_list,
+    'post_list':post_list,
     }
   return render(request, 'home.html', params)
 

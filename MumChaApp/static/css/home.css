@@ -1,0 +1,32 @@
+.acount {
+  display: flex;
+  align-items: center;
+  text-decoration:none;
+  color: black;
+}
+
+.acount img {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+}
+
+.acount p {
+  margin: 25px 0 25px 10px;
+}
+
+.acount .name {
+  font-weight: bold;
+}
+
+.acount .user_id {
+  color: #999999;
+}
+
+.tweet-contents {
+  
+}
+
+.tweet-contents img{
+  width: 100%;
+}

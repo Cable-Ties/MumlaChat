@@ -16,6 +16,7 @@
     <!-- Core theme CSS-->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
     <link href="/static/css/main.css" rel="stylesheet" />
+    <link href="/static/css/home.css" rel="stylesheet" />
   </head>
 
   <body>
@@ -34,13 +35,17 @@
       <div class="container">
         <h2>ホーム</h2>
       </div>
-      {% for tweet in tweet_list %}
+      {% for post in post_list %}
       <div class="container">
-        <ul class="">
-          <li>{{tweet.owner}}</li>
-          <li>{{tweet.post_date}}</li>
-          <li><img src = '../../media/{{tweet.image}}'></li>
-          <li>{{tweet.content}}</li>   
+        <a href="#!" class="acount">
+          <img src = '../../media/{{post.0}}'>
+          <p class="name">{{post.1.owner.name}}</p>
+          <p class="user_id">@{{post.1.owner.user_id}}</p>
+        </a>
+        <ul class="tweet-contents">  
+          <li><p class="content">{{post.1.content}}</p></li>
+          <li><img src = '../../media/{{post.1.image}}'></li>
+          <li><p class="post-date">{{post.1.post_date}}</p></li>
         </ul>
       </div>
       {% endfor %}

@@ -55,15 +55,17 @@ def home(request):
   tweet_list = list(tweet_list)
   tweet_list.reverse()
   # ownerのアイコンを表示したい
-  # i = 0
-  # for i in range(len(tweet_list)):
-  #   owner = models.User.objects.get(user_id = tweet_list[i].owner.user_id)
-  #   owner_img = owner.image
-  #   owner_img_list = owner_img_list.append(owner_img)
+  post_list = [] # icon and post
+  for i in range(len(tweet_list)):
+    owner = models.User.objects.get(user_id = tweet_list[i].owner.user_id)
+    owner_img = owner.image
+    print(owner_img)
+    #owner_img_list.append(owner_img)
+    post_list.append([owner_img, tweet_list[i]])
 
   params = {
     'tweet_list':tweet_list,
-    # 'owner_img_list':owner_img_list,
+    'post_list':post_list,
     }
   return render(request, 'home.html', params)
 
@@ -77,14 +79,23 @@ def tweet(request):
 #投稿完了
 def tweeting(request):
   if (request.method == 'POST'):
-    nowtime = datetime.datetime.now()
-    request.FILES["image"].name = str(nowtime) + '.png'
     post_form = forms.post_form(request.POST, request.FILES)
     if post_form.is_valid():
-      models.Post.objects.create(
-        content = post_form.cleaned_data['content'],
-        owner = models.User.objects.get(user_id=request.session['user_id']),
-        image = post_form.cleaned_data['image'],
-        post_date = datetime.datetime.now(),
-      )
+      if post_form.cleaned_data['image'] is not None:
+        nowtime = datetime.datetime.now()
+        request.FILES["image"].name = str(nowtime) + '.png'
+        post_form = forms.post_form(request.POST, request.FILES)
+        if post_form.is_valid():
+          models.Post.objects.create(
+            content = post_form.cleaned_data['content'],
+            owner = models.User.objects.get(user_id=request.session['user_id']),
+            image = post_form.cleaned_data['image'],
+            post_date = datetime.datetime.now(),
+          )
+      else:
+        models.Post.objects.create(
+          content = post_form.cleaned_data['content'],
+          owner = models.User.objects.get(user_id=request.session['user_id']),
+          post_date = datetime.datetime.now(),
+        )
   return home(request)

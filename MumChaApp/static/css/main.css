@@ -4,12 +4,12 @@ body {
   justify-content: center;
 }
 
-header {
+header, footer {
   -webkit-box-align: end;
   align-items: flex-end;
 }
 
-.head-wrapper {
+.head-wrapper, .foot-wrapper {
   width: 275px;
   display:flex;
   flex-flow: column;
@@ -31,7 +31,7 @@ header {
 
 .head-container span {
   margin: 0 20px;
-  font-size: 20px
+  font-size: 20px;
 }
 
 main {
@@ -39,4 +39,11 @@ main {
   padding: 0 30px;
   border-left: 2px solid rgb(239, 243, 244);
   border-right: 2px solid rgb(239, 243, 244);
+}
+
+ul {
+  padding-left:0;
+}
+li {
+  list-style:none;
 }

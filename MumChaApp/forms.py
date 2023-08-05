@@ -18,7 +18,7 @@ class register_form(forms.ModelForm):
     fields = ['user_id', 'email', 'password', 'name', 'image', 'comment']
 
 class post_form(forms.ModelForm):
-  content = forms.CharField(label='', widget=forms.Textarea(attrs={'cols': '80', 'rows': '10'}), required=True)
+  content = forms.CharField(label='', widget=forms.Textarea(attrs={'placeholder':'いまなにしてる？ｗ'}), required=True)
   image = forms.ImageField(label='', widget=forms.ClearableFileInput(), required=False)
   class Meta:
     model = Post

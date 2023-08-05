@@ -51,20 +51,23 @@ def registration(request):
 
 #投稿ホーム
 def home(request):
+  # ツイート内容を取得
   tweet_list = models.Post.objects.all()
   tweet_list = list(tweet_list)
   tweet_list.reverse()
-  # ownerのアイコンを表示したい
-  post_list = [] # icon and post
+  # ツイートした人のアカウント情報を取得
+  post_list = []
   for i in range(len(tweet_list)):
     owner = models.User.objects.get(user_id = tweet_list[i].owner.user_id)
     owner_img = owner.image
     print(owner_img)
-    #owner_img_list.append(owner_img)
     post_list.append([owner_img, tweet_list[i]])
-
+  # ログインしてる人のアカウント情報を取得
+  owner = models.User.objects.get(user_id=request.session['user_id'])
+  login_user_img = owner.image
   params = {
-    'tweet_list':tweet_list,
+    'login_user_img': login_user_img,
+    'post_form': forms.post_form(),
     'post_list':post_list,
     }
   return render(request, 'home.html', params)

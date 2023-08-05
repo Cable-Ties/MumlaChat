@@ -32,8 +32,19 @@
       </div>
     </header>
     <main>
-      <div class="container">
+      <div class="container home-head">
         <h2>ホーム</h2>
+      </div>
+      <div class="container home-tweet">
+        <img class="login-icon" src = '../../media/{{login_user_img}}'>
+        <form action="/tweeting/" id="post_form" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ post_form.content }}
+          <div class="button-menu">
+            {{ post_form.image }}
+            <input type="submit" value="投稿する" class="submit">
+          </div>
+        </form>
       </div>
       {% for post in post_list %}
       <div class="container">

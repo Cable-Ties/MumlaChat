@@ -36,9 +36,12 @@ header, footer {
 
 main {
   width: 700px;
-  padding: 0 30px;
   border-left: 2px solid rgb(239, 243, 244);
   border-right: 2px solid rgb(239, 243, 244);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
 }
 
 ul {
@@ -46,4 +49,8 @@ ul {
 }
 li {
   list-style:none;
+}
+
+:focus {
+  outline: none;
 }
